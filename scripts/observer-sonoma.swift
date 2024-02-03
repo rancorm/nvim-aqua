@@ -1,4 +1,4 @@
-#!/usr/bin/env DYLD_FRAMEWORK_PATH=/System/Library/Frameworks /usr/bin/swift
+#!/usr/bin/env DYLD_FRAMEWORK_PATH=/System/Library/Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
 /*
 *
 * observer.swift

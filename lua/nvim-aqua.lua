@@ -23,10 +23,31 @@ function na_change(channel, data, name)
   end
 end
 
+function na_cmd(command)
+  local handle = io.popen(command)
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+function na_macos_major()
+  local version = na_cmd("sw_vers -productVersion")
+  local major = string.match(version, "(%d+)%.")
+  
+  return major
+end
+
 function setup(opts)
   local opts = opts or {}
   local plugin_path = debug.getinfo(1).source:sub(2):match("(.*/)")
   local observer_path = plugin_path .. "../scripts/observer.swift"
+  local major = na_macos_major()
+
+  -- Check if we are running on macOS 14, if so use the sonoma observer
+  -- with workarounds for linking issues
+  if major == 14 then
+    observer_path = plugin_path .. "../scripts/observer-sonoma.swift"
+  end
 
   -- Start the observer process
   M.observer_jid = vim.fn.jobstart(observer_path, {

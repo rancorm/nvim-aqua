@@ -1,7 +1,7 @@
 # nvim-aqua
 
 Neovim plugin to detect macOS appearance change. I use it with themes and
-other plugins that observe `background`, like with [Monokai NighTasty](https://github.com/polirritmico/monokai-nightasty.nvim) and some of the [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) themes
+other plugins that observe `background`, like with [Monokai NighTasty](https://github.com/polirritmico/monokai-nightasty.nvim) and some of the [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) themes.
 
 ## Install and Setup
 
