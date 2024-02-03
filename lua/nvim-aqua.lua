@@ -26,7 +26,7 @@ end
 function setup(opts)
   local opts = opts or {}
   local plugin_path = debug.getinfo(1).source:sub(2):match("(.*/)")
-  local observer_path = plugin_path .. "/observer.swift"
+  local observer_path = plugin_path .. "../scripts/observer.swift"
 
   -- Start the observer process
   M.observer_jid = vim.fn.jobstart(observer_path, {
