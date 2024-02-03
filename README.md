@@ -10,7 +10,7 @@ Install using your favourite Neovim package manager.
 ```lua
 {
   "rancorm/nvim-aqua",
-  init = function()
+  config = function()
     require("nvim-aqua").setup {
       change = function(value)
         -- Note the comparison is done with a string not an integer
