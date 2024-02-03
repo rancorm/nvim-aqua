@@ -45,7 +45,7 @@ function setup(opts)
 
   -- Check if we are running on macOS 14, if so use the sonoma observer
   -- with workarounds for linking issues
-  if major == 14 then
+  if major == "14" then
     observer_path = plugin_path .. "../scripts/observer-sonoma.swift"
   end
 
