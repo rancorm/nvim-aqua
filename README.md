@@ -13,15 +13,15 @@ Install using your favourite Neovim package manager.
   init = function()
     local aqua = require("nvim-aqua").setup {
       change = function(value)
-    	if value == "1" then
+        if value == "1" then
           -- Light
-	      vim.cmd("colorscheme github_light")
-	      vim.opt.background = "light"
-        else
+          vim.cmd("colorscheme github_light")
+          vim.opt.background = "light"
+          else
           -- Dark
-	      vim.cmd("colorscheme github_dark")
-	      vim.opt.background = "dark"
-	    end
+          vim.cmd("colorscheme github_dark")
+          vim.opt.background = "dark"
+        end
       end
     }
   
