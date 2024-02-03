@@ -16,7 +16,20 @@ function na_change(channel, data, name)
 	if type(M.change) == "function" then
 	  M.change(value)
 	else
-	  vim.notify("UI change detected. No change function set")
+	  if not M.light and not M.dark then
+	    vim.notify("UI change detected. No functions set.")
+	  end
+	end
+
+	-- Call the light or dark function if set
+	if value == "1" then
+	  if M.light then
+	    M.light()
+	  end
+	else
+	  if M.dark then
+	    M.dark()
+	  end
 	end
       end
     end
@@ -62,11 +75,22 @@ function setup(opts)
     M.change = opts.change
   end
 
+  -- Set the light and dark functions if provided
+  if opts.light then
+    M.light = opts.light
+  end
+
+  if opts.dark then
+    M.dark = opts.dark
+  end
+
   -- Convince return module for user to call setup and
   -- get access to module
   return M
 end 
 
+M.light = nil
+M.dark = nil
 M.change = nil
 M.setup = setup
 

@@ -3,6 +3,11 @@
 Neovim plugin to detect macOS appearance change. I use it with themes and
 other plugins that observe `background`, like with [Monokai NighTasty](https://github.com/polirritmico/monokai-nightasty.nvim) and some of the [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) themes.
 
+## Sonoma Note
+
+There is a linking issue with Swift scripts on macOS Sonoma. The workaround requires
+the Xcode toolchain, sorry.
+
 ## Install and Setup
 
 Install using your favourite Neovim package manager.
@@ -25,6 +30,24 @@ Install using your favourite Neovim package manager.
     }
   
     vim.notify("nvim-aqua loaded", "info", { title = "nvim-aqua" })
+  end
+}
+```
+
+Or use the `light` and `dark` functions.
+
+```lua
+return {
+  "rancorm/nvim-aqua",
+  config = function()
+    require("nvim-aqua").setup {
+      light = function()
+        vim.opt.background = "light"
+      end,
+      dark = function()
+        vim.opt.background = "dark"
+      end
+    }
   end
 }
 ```
