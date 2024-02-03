@@ -1,9 +1,9 @@
 #!/usr/bin/env DYLD_FRAMEWORK_PATH=/System/Library/Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
 /*
 *
-* nvim-aqua-observer.swift
+* observer.swift
 *
-* A simple Swift script to observe macOS color scheme changes
+* Swift script to observe macOS color scheme changes
 *
 */
 import Cocoa

@@ -1,5 +1,5 @@
 --
---
+-- Initialize plugin and setup observer
 --
 local M = {}
 
@@ -15,6 +15,8 @@ function na_change(channel, data, name)
 	-- Call the users change function if set
 	if type(M.change) == "function" then
 	  M.change(value)
+	else
+	  vim.notify("UI change detected. No change function set")
 	end
       end
     end
