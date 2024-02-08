@@ -3,10 +3,9 @@
 Neovim plugin to detect macOS appearance change. I use it with themes and
 other plugins that observe `background`, like with [Monokai NighTasty](https://github.com/polirritmico/monokai-nightasty.nvim) and some of the [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) themes.
 
-## Sonoma Note
-
-There is a linking issue with Swift scripts on macOS Sonoma. The workaround requires
-the Xcode toolchain, sorry.
+> [!NOTE]
+> There is a linking issue with Swift scripts on macOS Sonoma. The workaround
+> requiresthe Xcode toolchain, sorry.
 
 ## Install and Setup
 
@@ -54,7 +53,7 @@ return {
 
 ## Observer
 
-This plugin comes with a Swift script, observer.swift, which watches for macOS
+This plugin comes with a Swift script, [observer.swift](scripts/observer.swift), which watches for macOS
 appearance changes.
 
 This script runs when the plugin does and prints a `1` (light) or `0` (dark) to 

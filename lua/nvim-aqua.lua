@@ -13,7 +13,7 @@ function na_change(channel, data, name)
       -- Only interested in the first key
       if key == 1 then
 	-- Call the users change function if set
-	if type(M.change) == "function" then
+	if M.change then
 	  M.change(value)
 	else
 	  if not M.light and not M.dark then
@@ -39,7 +39,9 @@ end
 function na_cmd(command)
   local handle = io.popen(command)
   local result = handle:read("*a")
+
   handle:close()
+  
   return result
 end
 
@@ -71,16 +73,16 @@ function setup(opts)
     })
 
   -- Set the change function if provided
-  if opts.change then
+  if type(opts.change) == "function" then
     M.change = opts.change
   end
 
   -- Set the light and dark functions if provided
-  if opts.light then
+  if type(opts.light) == "function" then
     M.light = opts.light
   end
 
-  if opts.dark then
+  if type(opts.dark) == "function" then
     M.dark = opts.dark
   end
 
