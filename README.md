@@ -5,7 +5,7 @@ other plugins that observe `background`, like with [Monokai NighTasty](https://g
 
 > [!NOTE]
 > There is a linking issue with Swift scripts on macOS Sonoma. The workaround
-> requiresthe Xcode toolchain, sorry.
+> requires the Xcode toolchain, sorry.
 
 ## Install and Setup
 
