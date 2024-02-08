@@ -14,6 +14,8 @@ Install using your favourite Neovim package manager.
 ```lua
 {
   "rancorm/nvim-aqua",
+  lazy = false, -- Make sure to load this plugin during startup
+  priority = 1000, -- Make sure to load this before all other start plugins
   config = function()
     require("nvim-aqua").setup {
       change = function(value)
@@ -28,7 +30,7 @@ Install using your favourite Neovim package manager.
       end
     }
   
-    vim.notify("nvim-aqua loaded", "info", { title = "nvim-aqua" })
+    vim.notify("nvim-aqua loaded", "info")
   end
 }
 ```
