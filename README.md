@@ -9,10 +9,11 @@ other plugins that observe `background`, like with [Monokai NighTasty](https://g
 
 ## Install and Setup
 
-Install using your favourite Neovim package manager.
+Install using your favourite Neovim package manager. What my [lazy.nvim](https://github.com/folke/lazy.nvim) plugin config
+looks like:
 
 ```lua
-{
+return {
   "rancorm/nvim-aqua",
   lazy = false, -- Make sure to load this plugin during startup
   priority = 1000, -- Make sure to load this before all other start plugins
@@ -29,13 +30,11 @@ Install using your favourite Neovim package manager.
         end
       end
     }
-  
-    vim.notify("nvim-aqua loaded", "info")
   end
 }
 ```
 
-Or use the `light` and `dark` functions.
+Or if you would like, you can use the `light` and `dark` functions.
 
 ```lua
 return {
@@ -55,12 +54,14 @@ return {
 
 ## Observer
 
-This plugin comes with a Swift script, [observer.swift](scripts/observer.swift), which watches for macOS
+The plugin includes a Swift script, [observer.swift](scripts/observer.swift), designed to monitor macOS
 appearance changes.
 
-This script runs when the plugin does and prints a `1` (light) or `0` (dark) to 
-standard out when changes are detected.
+The script is triggered under specific conditions (e.g., on
+startup or during certain events) and outputs either `1` (light mode) or `0` (dark mode)
+to standard output when changes are detected.
 
-The Lua portion of the plugin that spawns the script, uses a callback to handle
-the output and pass the value, `1` or `0`, to the user change function. Where the
-user can make use of it.
+The Lua component of the plugin is responsible for launching the Swift script and
+employs a callback mechanism to handle the script's output. The callback function
+receives the value (1 or 0) and passes it to a user-defined function, allowing users
+to incorporate the information as needed.
