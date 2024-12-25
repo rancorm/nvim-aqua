@@ -3,11 +3,11 @@
 --
 local M = {}
 
-function na_bail(job, status, event)
-  vim.notify("Observer bailed: " .. status)
-end
+local function na_bail(job, status, event)
+  vim.notify("Observer job: " .. job .. ", status: " .. status .. ", event: " .. event)
+ end
 
-function na_change(channel, data, name)
+local function na_change(_, data, _)
   if type(data) == "table" then
     for key, value in pairs(data) do
       -- Only interested in the first key
@@ -36,30 +36,51 @@ function na_change(channel, data, name)
   end
 end
 
-function na_cmd(command)
+local function na_cmd(command)
   local handle = io.popen(command)
-  local result = handle:read("*a")
 
-  handle:close()
-  
-  return result
+  if handle ~= nil then
+    local result = handle:read("*a")
+    handle:close()
+    return result
+  end
 end
 
-function na_macos_major()
+local function na_ostype()
+  local separator = package.config:sub(1, 1)
+
+  if separator == '\\' then
+      return "Windows"
+  elseif separator == '/' then
+    local os = na_cmd("uname")
+    return os
+  else
+    return "Unknown"
+  end
+end
+
+local function na_macos_major()
   local version = na_cmd("sw_vers -productVersion")
   local major = string.match(version, "(%d+)%.")
-  
+
   return major
 end
 
-function setup(opts)
+local function setup(opts)
   local opts = opts or {}
   local plugin_path = debug.getinfo(1).source:sub(2):match("(.*/)")
   local observer_path = plugin_path .. "../scripts/observer.swift"
+  local os_type = na_ostype()
+
+  -- Check if we are running not on macOS
+  if string.find(os_type, "Darwin", 1, true) == nil then
+    return
+  end
+
+  -- Get the major version of macOS
   local major = na_macos_major()
 
-  -- Check if we are running on macOS 14, if so use the sonoma observer
-  -- with workarounds for linking issues
+  -- If running on macOS 14, use Sonoma observer with linking workarounds.
   if major == "14" then
     observer_path = plugin_path .. "../scripts/observer-sonoma.swift"
   end
@@ -89,7 +110,7 @@ function setup(opts)
   -- Convince return module for user to call setup and
   -- get access to module
   return M
-end 
+end
 
 M.light = nil
 M.dark = nil
